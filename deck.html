@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Black Jack</title>
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <main class="deck-table">
+      <section class="player-action-ctn">
+        <button class="btn refresh">
+          <img src="assets/icons/refresh.svg" alt="" />
+          <span>Refresh</span>
+        </button>
+        <button class="btn new--game">
+          <img src="assets/icons/add.svg" alt="" />
+          <span>New game</span>
+        </button>
+        <div class="btn cursor-default">
+          <img src="assets/icons/money.svg" alt="" />
+          <span>₦100k</span>
+        </div>
+        <div class="btn cursor-default">
+          <span>Stake</span>
+          <span>₦10K</span>
+        </div>
+      </section>
+      <article class="flex-row">
+        <!--        Game deck-->
+        <section class="deck flex-col">
+          <img class="deck-img" src="assets/images/stake.svg" alt="" />
+          <img
+            src="assets/cards/card_back.png"
+            alt=""
+            class="deck-cards card-img"
+          />
+        </section>
+
+        <section>
+          <!--      Dealer card container-->
+          <div class="center-card-ctn mb-5rem">
+            <p class="name">Dealer</p>
+            <section class="card-ctn">
+              <div class="card-value dealer-card-value">
+                <span>9/10</span>
+              </div>
+              <img
+                class="card-img"
+                src="assets/cards/5_of_diamonds.png"
+                alt=""
+              />
+
+              <img
+                class="card-img card-bac"
+                src="assets/cards/card_back.png"
+                alt=""
+              />
+              <img
+                class="card-img hide-card"
+                src="assets/cards/ace_of_clubs.png"
+                alt=""
+              />
+            </section>
+          </div>
+
+          <!--      Player card container-->
+          <div class="center-card-ctn">
+            <p class="name">Player</p>
+
+            <section class="card-ctn">
+              <div class="card-value player-card-value">
+                <span>9/10</span>
+              </div>
+              <img
+                class="card-img hide-cad"
+                src="assets/cards/5_of_diamonds.png"
+                alt=""
+              />
+              <img
+                class="card-img hide-crd"
+                src="assets/cards/4_of_clubs.png"
+                alt=""
+              />
+            </section>
+          </div>
+        </section>
+        <section class="functional-btn-ctn">
+          <button class="btn functional-btn">Hit</button>
+          <button class="btn functional-btn">Stand</button>
+          <button class="btn functional-btn">Double</button>
+        </section>
+      </article>
+    </main>
+    <script src="scripts/script1.js"></script>
+  </body>
+</html>

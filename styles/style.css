@@ -1,0 +1,378 @@
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "GM Hiptop", serif;
+}
+
+@font-face {
+  font-family: "GM Hiptop";
+  src: url("../assets/fonts/Gmhightop.ttf");
+}
+
+/*Welcome page*/
+.welcome-page {
+  background: #000;
+}
+
+.center-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000;
+  position: relative;
+  width: 1000px;
+  margin-inline: auto;
+}
+
+.welcome-page-bg {
+  background-image: url("../assets/images/black_landing_page (Small).png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  /*align-items: center;*/
+}
+
+.welcome-page-bg button {
+  margin-top: auto;
+  margin-bottom: 3rem;
+}
+
+/*Stake page*/
+
+.stake-page-ctn {
+  background-image: url("../assets/images/place_bet.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 10rem;
+}
+
+.center div:first-of-type {
+  /*background-color: #76b3af;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom {
+  margin-bottom: 1.5rem;
+}
+
+.place-h1 {
+  color: #f3e615;
+  font-size: 90px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/*.stake {*/
+/*  !*background-color: #76b3af;*!*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*}*/
+
+#stakeInput {
+  background-color: #76b3af;
+  font-size: 1rem;
+  padding: 0.8rem 4rem 0.8rem 0.8rem;
+  border-radius: 0.5rem;
+  border: none;
+  margin-inline: auto;
+  outline: none;
+}
+
+#clearStakeBtn {
+  background-color: #76b3af;
+  margin-left: -3rem;
+  margin-top: -1.2rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.stake-btn {
+  background-color: #76b3af;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem;
+}
+
+.stake-btn:hover {
+  background-color: #54fff4;
+}
+
+/* Style for the pop-up container */
+.popup-container {
+  position: fixed;
+  bottom: 3rem;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  background-color: #76b3af;
+
+  border-radius: 0.5rem;
+  min-width: 20rem;
+  min-height: 4rem;
+  padding: 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+/* Style for the close button in the pop-up */
+#clearPopUp {
+  position: absolute;
+  background-color: #76b3af;
+
+  top: 1.2rem;
+  right: 1.2rem;
+  cursor: pointer;
+  width: 1rem;
+  outline: none;
+  border: none;
+}
+
+.top-4rem {
+  margin-top: 4rem;
+}
+
+.btn {
+  border-radius: 0.5rem;
+  background-color: #54fff4;
+  color: #000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.4rem 1.5rem 0.4rem 1.5rem;
+  /*padding-inline: ;*/
+  text-transform: uppercase;
+  height: 2.7rem;
+  font-size: 1.2rem;
+  border: none;
+}
+
+.mb-5rem {
+  margin-bottom: 5rem;
+}
+
+.mb-21rem {
+  margin-bottom: 21rem;
+}
+
+.cursor-default {
+  cursor: default;
+}
+
+.balance-ctn p:first-of-type {
+  text-align: center;
+  color: #f3e615;
+}
+
+/******************************************************/
+.game-body {
+  background-image: url("../assets/images/red-casino-dice-poker-table.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 1.5rem;
+  height: 100vh;
+}
+
+.game-menu ul {
+  display: flex;
+  gap: 1rem;
+}
+
+.game-menu ul li,
+.game-menu ul {
+  list-style: none;
+  /*text-decoration: none;*/
+  /*color: #000000;*/
+}
+
+.game-menu ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  height: 28rem;
+}
+
+/*Deck section*/
+.deck {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*background-image: url("../assets/images/stake.svg");*/
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 320px;
+  height: 320px;
+}
+
+.deck-cards {
+  display: flex;
+  /*flex-direction: row-reverse;*/
+  justify-content: center;
+  align-items: center;
+  max-width: 6rem;
+  margin-inline: auto;
+}
+
+.deck-img {
+  width: 6rem;
+  object-fit: cover;
+  margin-left: -6.1rem;
+  box-shadow: 0.25rem 0.25rem 0.5rem #005047;
+}
+
+.remove-shadow {
+  box-shadow: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.transition-ease-out {
+  opacity: 0.5;
+  transition: opacity 1.5s ease-in-out; /* Adjust the duration and easing function */
+  pointer-events: none; /* Optionally disable pointer events during transition */
+}
+
+.transition-ease-in {
+  opacity: 1;
+  transition: opacity 2s ease-out; /* Adjust the duration and easing function */
+  pointer-events: none; /* Optionally disable pointer events during transition */
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.fixed-width {
+  min-width: 30rem;
+  min-height: 6rem;
+  position: relative;
+}
+
+/*Card section*/
+.card-ctn {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 10rem;
+  height: 8rem;
+}
+
+.card img {
+  max-width: 6rem;
+  object-fit: contain;
+}
+
+.mr-2rem {
+  margin-right: -2rem;
+}
+
+.mb-1rem {
+  margin-bottom: 0.4rem;
+}
+
+.relative {
+  position: relative;
+}
+
+.score {
+  background-color: #ad0e11;
+  border-radius: 50%;
+  color: #f3e615;
+  display: flex;
+  font-size: 1rem;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -0.8rem;
+  right: -1.8rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.ace-score {
+  width: 3rem;
+  height: 3rem;
+}
+
+.play-ctn {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.name {
+  color: #f3e615;
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0.4rem 1.5rem 0.4rem 1.5rem;
+  text-transform: uppercase;
+  text-align: center;
+  margin-inline: auto;
+}
+
+.sub-menu {
+  margin-right: 10rem;
+}
+
+.player-action {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 10rem;
+}
+
+#message {
+  color: #f3e615;
+  font-size: 4rem;
+  margin-bottom: 8rem;
+  text-transform: uppercase;
+  min-width: 20rem;
+}

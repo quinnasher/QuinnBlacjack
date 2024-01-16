@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Black Jack</title>
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <main>
+      <!--   Game Landing Page-->
+      <div class="welcome-page">
+        <section class="center-page">
+          <div class="welcome-page-bg">
+            <button id="playNowBtn" class="btn">
+              <img src="assets/icons/play_now.svg" alt="" />
+              <span>Play Now</span>
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <!--    Stake page section-->
+
+      <div class="stake-page-ctn">
+        <section class="center">
+          <h1 class="place-h1 mb-5rem">Place Bets</h1>
+          <div>
+            <input
+              id="stakeInput"
+              class="bottom"
+              type="number"
+              min="10000"
+              max="50000"
+              step="1000"
+              placeholder="₦10k - ₦50k"
+            />
+
+            <button id="clearStakeBtn">
+              <img src="assets/icons/close-circle.svg" alt="" />
+            </button>
+          </div>
+
+          <!-- Pop-up container -->
+          <div class="popup-container hidden" id="popUP">
+            <span id="popUpContent"></span>
+            <button id="clearPopUp">
+              <img src="assets/icons/close-circle.svg" alt="" />
+            </button>
+          </div>
+
+          <div class="bottom">
+            <button class="stake-btn-0 stake-btn">100</button>
+            <button class="stake-btn-1 stake-btn">500</button>
+            <button class="stake-btn-2 stake-btn">10k</button>
+            <button class="stake-btn-3 stake-btn">100k</button>
+            <button class="stake-btn-4 stake-btn">200k</button>
+          </div>
+
+          <button id="playBtn" class="btn top-4rem">
+            <img src="assets/icons/play_now.svg" alt="" />
+            <span>Play</span>
+          </button>
+        </section>
+        <div class="stake-btn balance">
+          <!--          <img src="assets/icons/money.svg" alt="" />-->
+          <span>Bal : ₦100k</span>
+        </div>
+      </div>
+
+      <!--   Main Game Section-->
+      <div class="game-body">
+        <div class="game-menu">
+          <ul>
+            <li>
+              <button id="restart" class="btn">
+                <img src="assets/icons/refresh.svg" alt="" />
+                <span>Restart</span>
+              </button>
+            </li>
+            <li>
+              <button id="newGame" class="btn">
+                <img src="assets/icons/add.svg" alt="" />
+                <span>New game</span>
+              </button>
+            </li>
+
+            <li>
+              <button class="btn cursor-default">
+                <img src="assets/icons/money.svg" alt="" />
+                <span class="balance">₦100k</span>
+              </button>
+            </li>
+
+            <li>
+              <button id="stakeDisplay" class="btn cursor-default">
+                <span>Stake</span>
+                <span>₦10K</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div class="game">
+          <section class="deck">
+            <div id="deckCards" class="deck-cards">
+              <img
+                id="dealCard"
+                class="deck-img"
+                src="assets/cards/card-back.png"
+                alt=""
+              />
+            </div>
+          </section>
+          <div class="play-ctn fixed-width">
+            <section class="player-0 player active-player">
+              <h1 class="name mb-1rem">Dealer</h1>
+              <div class="card-ctn fixed-width">
+                <div class="relative">
+                  <div id="dealerCardCtn" class="card">
+                    <img
+                      class="mr-2rem"
+                      src="assets/cards/9_of_clubs.png"
+                      alt=""
+                    />
+                    <img
+                      class="mr-2rem"
+                      src="assets/cards/card-back.png"
+                      alt=""
+                    />
+                  </div>
+                  <span id="dealerScore" class="score">9</span>
+                </div>
+              </div>
+            </section>
+            <section class="player-1 player active-player">
+              <h1 class="name mb-1rem">Player</h1>
+              <div class="card-ctn fixed-width">
+                <div class="relative">
+                  <div id="playerCardCtn" class="card">
+                    <img
+                      class="mr-2rem"
+                      src="assets/cards/ace_of_hearts.png"
+                      alt=""
+                    />
+                    <img
+                      class="mr-2rem"
+                      src="assets/cards/9_of_clubs.png"
+                      alt=""
+                    />
+                  </div>
+                  <span id="playerScore" class="score">9/3</span>
+                </div>
+              </div>
+            </section>
+          </div>
+          <section class="sub-menu">
+            <div>
+              <h2 id="message">Blackjack</h2>
+            </div>
+            <div class="player-action">
+              <button id="hitBtn" class="btn">Hit</button>
+              <button id="standBtn" class="btn">Stand</button>
+              <button id="doubleBtn" class="btn">Double</button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="scripts/script.mjs"></script>
+  </body>
+</html>

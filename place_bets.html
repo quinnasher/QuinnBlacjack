@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Place Bet</title>
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <div class="stake-page-ctn">
+      <section class="center">
+        <h1 class="place-h1 mb-5rem">Place Bets</h1>
+        <div class="stake-page-ctn">
+          <input
+            class="bet-input bottom"
+            type="number"
+            min="100"
+            max="1000000"
+            step="100"
+            placeholder="₦100 - ₦1,000,000"
+          />
+
+          <button class="clearStakeBtb clear--bet">
+            <img src="assets/icons/close-circle.svg" alt="" />
+          </button>
+        </div>
+
+        <div class="bet-btn-ctn bottom">
+          <button class="stake-btn">100</button>
+          <button class="stake-btn">500</button>
+          <button class="stake-btn">10k</button>
+          <button class="stake-btn">100k</button>
+          <button class="stake-btn">200k</button>
+        </div>
+
+        <button class="btn top-4rem">
+          <img src="assets/icons/play_now.svg" alt="" />
+          <span>Play</span>
+        </button>
+      </section>
+      <div class="btn">
+        <img src="assets/icons/money.svg" alt="" />
+        <span>₦100k</span>
+      </div>
+    </div>
+    <script src="scripts/script.mjs"></script>
+  </body>
+</html>

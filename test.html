@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      /* Your existing styles here */
+
+      /* Style for the pop-up container */
+      .popup-container {
+        display: block;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+      }
+
+      /* Style for the close button in the pop-up */
+      .popup-close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        width: 40px;
+        background: #000;
+      }
+    </style>
+    <title>Your Title</title>
+  </head>
+  <body>
+    <!-- Your existing HTML code -->
+
+    <!-- Pop-up container -->
+    <div class="popup-container" id="insufficientBalancePopup">
+      <span id="popupContent"></span>
+      <button class="popup-close-btn" onclick="closePopup()">Close</button>
+    </div>
+
+    <script>
+      // Your existing JavaScript code
+
+      function showInsufficientBalancePopup() {
+        const popup = document.getElementById("insufficientBalancePopup");
+        const popupContent = document.getElementById("popupContent");
+
+        popupContent.textContent = "Insufficient balance! Please add funds.";
+        popup.style.display = "block";
+      }
+
+      function closePopup() {
+        const popup = document.getElementById("insufficientBalancePopup");
+        popup.style.display = "none";
+      }
+
+      document.getElementById("playBtn").addEventListener("click", function () {
+        // Check if balance is sufficient before proceeding
+        const currentBalance = 100000; // Replace with your actual balance logic
+        const stakeAmount =
+          parseInt(document.getElementById("stakeInput").value, 10) || 0;
+
+        if (stakeAmount > currentBalance) {
+          showInsufficientBalancePopup();
+        } else {
+          // Proceed with the play logic
+          // ...
+        }
+      });
+    </script>
+  </body>
+</html>
