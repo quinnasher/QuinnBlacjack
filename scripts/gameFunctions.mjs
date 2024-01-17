@@ -91,7 +91,7 @@ export function dealCard(shuffledDeck) {
  * Calculates the total value of a hand of cards in a card game, considering the flexible value of Aces.
  *
  * @param {Array<Object>} hand - An array of card objects, each with a `value` property representing its numerical value.
- * @returns {{isAce: boolean, aceScoreValue: number, initialDealerHand: number, normalScoreValue: number}} The total value of the hand, taking into account the optimal value of Aces to avoid busting.
+ * @returns {hasAce: boolean, scoreWithAceFlexibility: number, initialScore: number, dealerFirstCardValue: number}} The total value of the hand, taking into account the optimal value of Aces to avoid busting.
  *
  * @example
  * const hand = [{ rank: "Ace", value: 11 }, { rank: "2", value: 2 }, { rank: "10", value: 10 }];
@@ -111,10 +111,10 @@ export function calculateScore(hand) {
 
     // // Return scores based on player or dealer
     return {
-        normalScoreValue: sum, // Normal Score
-        aceScoreValue: sum -= hand.filter((card) => card.rank === "ace").length * 10, // Player's score considering aces
-        isAce: hand.filter(card => card.rank === "ace").length > 0,
-        initialDealerHand: hand[0].value, // Dealer's initial visible card
+        initialScore: sum, // Initial score without considering ace adjustments
+        scoreWithAceFlexibility: sum -= hand.filter((card) => card.rank === "ace").length * 10, // Initial score without considering ace adjustments
+        hasAce: hand.filter(card => card.rank === "ace").length > 0,
+        dealerFirstCardValue: hand[0].value, // Dealer's initial visible card
     };
 }
 

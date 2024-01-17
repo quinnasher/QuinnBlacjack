@@ -251,7 +251,46 @@
   object-fit: cover;
   margin-left: -6.1rem;
   box-shadow: 0.25rem 0.25rem 0.5rem #005047;
+  /*z-index: 1000;*/
 }
+
+/* Animation for moving the card (adjust speed/duration as needed) */
+@keyframes dealCard {
+  from {
+    transform: translate(-50%, -50%) rotate(-35deg);
+  }
+  to {
+    transform: translatex(500px) translateY(152px) rotate(180deg);
+  }
+}
+
+.deal-animation {
+  animation-name: dealCard;
+  animation-duration: 1s; /* Adjust for desired speed */
+  animation-timing-function: ease-in-out; /* Smooth movement */
+}
+
+@keyframes swapAndRotate {
+  from {
+    transform: rotate(45deg); /* Match starting rotation */
+  }
+  to {
+    transform: rotate(90deg); /* Rotate to face player */
+    opacity: 0; /* Fade out for seamless swap */
+  }
+}
+
+.rotate-and-swap {
+  animation-name: rotateAndSwap;
+  animation-duration: 0.5s; /* Adjust speed as desired */
+  animation-timing-function: ease-out; /* Smoother acceleration */
+}
+
+/*.deal-card-animation {*/
+/*  animation-name: dealCard;*/
+/*  animation-duration: 10s; !* Adjust speed as desired *!*/
+/*  animation-timing-function: ease-out; !* Smoother deceleration *!*/
+/*}*/
 
 .remove-shadow {
   box-shadow: none;
@@ -324,7 +363,7 @@
   align-items: center;
   position: absolute;
   top: -0.8rem;
-  right: -1.8rem;
+  right: -2.3rem;
   width: 2rem;
   height: 2rem;
 }
@@ -375,4 +414,12 @@
   margin-bottom: 8rem;
   text-transform: uppercase;
   min-width: 20rem;
+}
+
+.z-index-10 {
+  z-index: 10;
+}
+
+.z-index-20 {
+  z-index: 10;
 }

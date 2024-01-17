@@ -9,7 +9,7 @@ export const restartEl = document.getElementById("restart");
 export const newGameEl = document.getElementById("newGame");
 export const stakeDisplayEl = document.getElementById("stakeDisplay")
 
-export const cardEl = document.querySelector(".card")
+export const dealCard = document.getElementById("dealCard")
 export const playerCardCtnEl = document.getElementById("playerCardCtn")
 export const dealerCardCtnEl = document.getElementById("dealerCardCtn")
 export const playerScoreEl = document.getElementById("playerScore")

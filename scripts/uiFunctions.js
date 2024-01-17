@@ -55,6 +55,7 @@ export function populateDeckWithImages() {
     const cover = document.createElement("img");
     cover.src = `../assets/cards/card-back.png`;
     cover.classList.add("deck-img");
+    cover.classList.add("remove-shadow");
 
     deckCardsEl.appendChild(cover);
   }
