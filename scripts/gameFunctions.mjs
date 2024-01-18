@@ -104,15 +104,14 @@ export function calculateScore(hand) {
         sum += card.value;
     }
 
-    // const numOfAces = hand.filter((card) => card.rank === "ace").length;
-    // if (sum > 21) {
-    //     sum -= numOfAces * 10;
-    // }
+    let temp = sum
+    let aceScore = temp -= hand.filter((card) => card.rank === "ace").length * 10;
 
+    console.log(sum)
     // // Return scores based on player or dealer
     return {
         initialScore: sum, // Initial score without considering ace adjustments
-        scoreWithAceFlexibility: sum -= hand.filter((card) => card.rank === "ace").length * 10, // Initial score without considering ace adjustments
+        scoreWithAceFlexibility: sum > 21 ? aceScore : sum, // Initial score without considering ace adjustments
         hasAce: hand.filter(card => card.rank === "ace").length > 0,
         dealerFirstCardValue: hand[0].value, // Dealer's initial visible card
     };

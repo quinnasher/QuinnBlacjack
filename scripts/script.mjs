@@ -7,7 +7,7 @@ import * as stakePage from "./stake.mjs";
 import * as mainGameEls from "./gamePage.mjs"
 import * as welcome from "./welcome.mjs"
 import * as uiFunctions from "./uiFunctions.js"
-import {hitBtnEl} from "./gamePage.mjs";
+import {dealerCardCtnEl, hitBtnEl, messageEl} from "./gamePage.mjs";
 
 
 // local variables
@@ -27,8 +27,6 @@ let hit;
 stakeInit();
 gameInit()
 
-// console.log(balance)
-// Welcome section event lister
 welcome.playNowBtnEl.addEventListener("click", function () {
     welcome.welcomePageEl.classList.toggle("transition-ease-out"); // Add transition class first
 
@@ -135,54 +133,91 @@ mainGameEls.newGameEl.addEventListener("click", function () {
 
 })
 
-// hit btn
 
-function hitBtnHandler() {
-    // deal card to the player
-    const dealCard = allFunctions.dealCard(shuffledDeck)
+mainGameEls.hitBtnEl.addEventListener("click", function () {
+    if (!isEnded) {
+        let dealCard;
 
-    mainGameEls.dealCard.classList.add("deal-animation")
-    mainGameEls.dealCard.classList.add("z-index-10")
-
-    setTimeout(function () {
-
-
-        let createImg = document.createElement("img")
-        createImg.src = `assets/cards/${dealCard.rank}_of_${dealCard.suit}.png`
-
-        createImg.classList.add("mr-2rem")
-        mainGameEls.playerCardCtnEl.appendChild(createImg)
-
-        mainGameEls.dealCard.classList.remove("deal-animation")  // remove this class so that it can be added again
-        mainGameEls.dealCard.classList.remove("z-index-10")
-
-        // update player hand
-        playerHand.push(dealCard)
-
-        // update player's score
-        playerScore = calculateScore(playerHand)
-        console.log(playerScore)
-        console.log(isEnded)
-
-        displayScore()
-
-        if (playerScore.scoreWithAceFlexibility > 21) {
-            balance -= Number(stakePage.stakeInputEl.value)
-            stakePage.balanceEl.forEach(element => {
-                element.textContent = String(balance)
-            })
-
-            handleGameEnd(mainGameEls.hitBtnEl, hitBtnHandler); // Call handleGameEnd inside the handler
+        while (true) {
+            if (shuffledDeck.length > 1) {
+                dealCard = allFunctions.dealCard(shuffledDeck)
+                break
+            }
+            shuffledDeck = allFunctions.shuffle(deck)
         }
 
+        mainGameEls.dealCard.classList.add("deal-animation")
+        mainGameEls.dealCard.classList.add("z-index-10")
 
-    }, 1000)
+        setTimeout(function () {
+
+
+            let createImg = document.createElement("img")
+            createImg.src = `assets/cards/${dealCard.rank}_of_${dealCard.suit}.png`
+
+            createImg.classList.add("mr-2rem")
+            mainGameEls.playerCardCtnEl.appendChild(createImg)
+
+            mainGameEls.dealCard.classList.remove("deal-animation")  // remove this class so that it can be added again
+            mainGameEls.dealCard.classList.remove("z-index-10")
+
+            // update player hand
+            playerHand.push(dealCard)
+
+            // update player's score
+            playerScore = calculateScore(playerHand)
+
+
+            resolveGameOutcom()
+            displayDealerFullHand()
+        }, 1000)
+    }
+
+});
+
+// stand event listenre
+
+mainGameEls.standBtnEl.addEventListener("click", function () {
+
+    // dealer should be dealt card till atlest 17
+    while (true) { // make sure the deck is not empty
+
+        if (shuffledDeck.length > 3) {
+            while (dealerScore.scoreWithAceFlexibility <= 17) {
+                dealerHand.push(allFunctions.dealCard(shuffledDeck))
+
+                calculateScore(dealerHand)
+            }
+        }
+        shuffledDeck = allFunctions.shuffle(deck)
+        break
+    }
+
+    // calculate the dealer new hand
+
+
+    resolveGameOutcom(true)
+})
+
+// console.log(`isEnded is ${isEnded}`)
+
+function displayDealerFullHand() {
+    // display dealer's full hand
+    if (isEnded) {
+        // console.log(`is ended is ${isEnded}`)
+        mainGameEls.dealerCardCtnEl.innerHTML = "";
+
+        console.log(dealerHand.length)
+
+        for (let i = 0; i < dealerHand.length; i++) {
+            const image = document.createElement("img")
+            image.src = `assets/cards/${dealerHand[i].rank}_of_${dealerHand[i].suit}.png`
+            image.classList.add("mr-2rem")
+
+            dealerCardCtnEl.appendChild(image)
+        }
+    }
 }
-
-// mainGameEls.hitBtnEl.addEventListener("click", hitBtnHandler)
-
-
-// Game initialization functions
 
 function handleGameEnd(btn, btnHandler) {
     btn.removeEventListener("click", btnHandler)
@@ -208,8 +243,6 @@ function gameInit() {
     stand = false;
     hit = false;
 
-    mainGameEls.hitBtnEl.addEventListener("click", hitBtnHandler);
-
     uiFunctions.populateDeckWithImages()
     deck = allFunctions.createDeck();
     shuffledDeck = allFunctions.shuffle(deck);
@@ -233,11 +266,22 @@ function gameInit() {
                 playerHand.push(allFunctions.dealCard(shuffledDeck))
                 dealerHand.push(allFunctions.dealCard(shuffledDeck))
 
+                // calculate and display initial score
+                dealerScore = allFunctions.calculateScore(dealerHand)
+                playerScore = allFunctions.calculateScore(playerHand)
+
                 // create and append card images
                 const dealerImg = document.createElement("img")
                 const playerImg = document.createElement("img")
 
-                dealerImg.src = dealerHand.length === 1 ? `assets/cards/${dealerHand[0].rank}_of_diamonds.png` : `assets/cards/card-back.png`
+                if (dealerScore.scoreWithAceFlexibility == 21) {
+                    dealerImg.src = `assets/cards/${dealerHand[i].rank}_of_${dealerHand[i].suit}.png`
+
+                } else {
+                    dealerImg.src = dealerHand.length === 1 ? `assets/cards/${dealerHand[0].rank}_of_${dealerHand[0].suit}.png` : `assets/cards/card-back.png`
+
+                }
+
                 playerImg.src = `assets/cards/${playerHand[i].rank}_of_${playerHand[i].suit}.png`
 
                 dealerImg.classList.add("mr-2rem")
@@ -250,25 +294,23 @@ function gameInit() {
         }
     }
 
-    // calculate and display initial score
-    dealerScore = allFunctions.calculateScore(dealerHand)
-    playerScore = allFunctions.calculateScore(playerHand)
-    displayScore();
+
+    resolveGameOutcom();
 }
 
 
 // Updates game display elements with scores and messages, handling ace scenarios.
 function handleGameMessage(message = "") {
     // Display dealer's score, showing initial card value if game is ongoing, otherwise revealing full score
-    mainGameEls.dealerScoreEl.textContent = !isEnded
-        ? dealerScore.dealerFirstCardValue
-        : dealerScore.scoreWithAceFlexibility;
+    mainGameEls.dealerScoreEl.textContent = isEnded
+        ? dealerScore.scoreWithAceFlexibility
+        : dealerScore.dealerFirstCardValue
 
     // Adjust player score display based on ace presence
     if (playerScore.hasAce) {
-        mainGameEls.playerScoreEl.classList.add("ace-score"); // Add visual indication for ace
+        mainGameEls.playerScoreEl.classList.remove("ace-score"); // Add visual indication for ace
         // Display both scores with a slash to indicate ace flexibility
-        mainGameEls.playerScoreEl.textContent = playerScore.scoreWithAceFlexibility < 21 ? `${playerScore.initialScore}/${playerScore.scoreWithAceFlexibility}` : playerScore.scoreWithAceFlexibility;
+        mainGameEls.playerScoreEl.textContent = playerScore.scoreWithAceFlexibility;
     } else {
         mainGameEls.playerScoreEl.classList.remove("ace-score"); // Remove ace indication if not applicable
         // Show score without ace adjustments
@@ -279,44 +321,80 @@ function handleGameMessage(message = "") {
     mainGameEls.messageEl.textContent = message;
 }
 
-
-function displayScore(stand = false) {
+/**
+ * Determines the outcome of a blackjack game based on player and dealer scores, handling win/loss/push scenarios and updating game state accordingly.
+ *
+ * @param {boolean} stand - Optional boolean indicating whether the player has chosen to stand (default: false).
+ */
+function resolveGameOutcom(stand = false) {
     if (dealerScore.scoreWithAceFlexibility === 21 && playerScore.scoreWithAceFlexibility === 21) {
 
         handleGameMessage("push")
-        isEnded = true;
-        console.log(playerScore.scoreWithAceFlexibility, dealerScore.scoreWithAceFlexibility)
+        balance += Number(stakePage.stakeInputEl.textContent);
+        stakePage.balanceEl.forEach(element => {
+            element.textContent = allFunctions.formatNumber(balance)
+
+            console.log(balance)
+            isEnded = true
+        })
 
     } else if (dealerScore.scoreWithAceFlexibility === 21) {
 
         handleGameMessage("Dealer wins")
+        isEnded = true
 
     } else if (playerScore.scoreWithAceFlexibility === 21) {
 
         handleGameMessage("Blackjack")
+        balance += Number(stakePage.stakeInputEl.textContent) * 2
+        stakePage.balanceEl.forEach(element => {
+            element.textContent = allFunctions.formatNumber(balance)
+        })
+        isEnded = true
 
     } else if (stand) {
         if (playerScore.scoreWithAceFlexibility === dealerScore.scoreWithAceFlexibility) {
 
             handleGameMessage("Push")
+            balance += Number(stakePage.stakeInputEl.textContent);
+            stakePage.balanceEl.forEach(element => {
+                element.textContent = allFunctions.formatNumber(balance)
+            })
+            console.log(balance)
 
+            isEnded = true
         } else if (playerScore.scoreWithAceFlexibility > dealerScore.scoreWithAceFlexibility) {
 
             handleGameMessage("You win")
+            balance += Number(stakePage.stakeInputEl.textContent) * 2
+            stakePage.balanceEl.forEach(element => {
+                element.textContent = allFunctions.formatNumber(balance)
+            })
+            console.log(balance)
 
+            isEnded = true
         } else if (dealerScore.scoreWithAceFlexibility > 21) {
 
             handleGameMessage("Dealer Bust. You win")
+            balance += Number(stakePage.stakeInputEl.textContent) * 2
+            stakePage.balanceEl.forEach(element => {
+                element.textContent = allFunctions.formatNumber(balance)
+            })
+            console.log(balance)
+
+            isEnded = true
 
         } else {
 
             handleGameMessage("Dealer wins")
+            isEnded = true
         }
     } else if (playerScore.scoreWithAceFlexibility > 21) { // this condition considers player hitting
-
         handleGameMessage("Bust")
-    } else {
-
+        isEnded = true
+    } else if (playerScore.scoreWithAceFlexibility < 21) {
         handleGameMessage()
+    } else {
+        handleGameMessage("unhandled condition") // use for debugging
     }
 }
