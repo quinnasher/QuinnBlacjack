@@ -1,7 +1,7 @@
 "use strict"
 
 
-import * as mainGameEls from "../gamePage.mjs";
+import * as mainGameEls from "./gamePage.mjs";
 import {dealerScore, playerScore} from "./score.mjs";
 import {isEnded} from "./gameBooleans.mjs";
 

@@ -1,7 +1,7 @@
 "use strict";
 
-import { gameBodyEl, newGameEl } from "../gamePage.mjs";
-import { stakeCtnEl } from "../stake.mjs";
+import { gameBodyEl, newGameEl } from "../functions/gamePage.mjs";
+import { stakeCtnEl } from "../functions/stake.mjs";
 import { gameInit } from "../functions/gameInit.mjs";
 import { balance, setBalance } from "../functions/balance.mjs";
 import { mainGameInit } from "../functions/mainGameInit.mjs";

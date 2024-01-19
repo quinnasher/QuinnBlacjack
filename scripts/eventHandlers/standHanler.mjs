@@ -1,8 +1,8 @@
 "use strict"
 
-import {dealerCardCtnEl, dealerScoreEl, standBtnEl} from "../gamePage.mjs";
+import {dealerCardCtnEl, dealerScoreEl, standBtnEl} from "../functions/gamePage.mjs";
 import {deck, setShuffledDeck, shuffledDeck} from "../functions/deck.mjs";
-import {calculateScore, dealCard, shuffle} from "../gameFunctions.mjs";
+import {calculateScore, dealCard, shuffle} from "../functions/gameFunctions.mjs";
 import {dealerHand} from "../functions/hand.mjs";
 import {dealerScore, setDealerScore} from "../functions/score.mjs";
 import {gameOutcome} from "../functions/gameOutcome.mjs";
@@ -30,7 +30,7 @@ export function standBtn() {
 
 
             }
-            // setIsEnded(true)
+            setIsEnded(true)
             gameOutcome(true)
             displayDealerFullHand()
 

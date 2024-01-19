@@ -1,10 +1,10 @@
 "use strict";
 
-import * as stakePage from "../stake.mjs";
-import {stakeAllBtnEl} from "../stake.mjs";
+import * as stakePage from "./stake.mjs";
+import {stakeAllBtnEl} from "./stake.mjs";
 import {percent} from "../main.mjs";
 import {balance} from "./balance.mjs";
-import {nFormatter} from "../gameFunctions.mjs";
+import {nFormatter} from "./gameFunctions.mjs";
 
 /**
  * Attaches click event listeners to stake buttons, updating the stake input field with calculated amounts based on button values and the player's balance.

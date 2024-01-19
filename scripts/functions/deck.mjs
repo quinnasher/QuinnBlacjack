@@ -1,6 +1,6 @@
 "use strict"
 
-import {createDeck, shuffle} from "../gameFunctions.mjs";
+import {createDeck, shuffle} from "./gameFunctions.mjs";
 
 export const deck = createDeck();
 export let shuffledDeck = shuffle(deck)

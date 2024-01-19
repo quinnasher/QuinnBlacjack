@@ -1,5 +1,5 @@
 "use strict";
-import {betMinMax, nFormatter} from "../gameFunctions.mjs";
+import {betMinMax, nFormatter} from "../functions/gameFunctions.mjs";
 import {balance, setBalance} from "../functions/balance.mjs";
 import {
     balanceEl, clearPopUp,
@@ -11,11 +11,11 @@ import {
     stakeCtnEl,
     stakeInputEl,
     stakeInputMinMaxValue,
-} from "../stake.mjs";
-import {gameBodyEl, stakeDisplayEl} from "../gamePage.mjs";
+} from "../functions/stake.mjs";
+import {gameBodyEl, stakeDisplayEl} from "../functions/gamePage.mjs";
 import {updateStakeSuggestionButtonTexts} from "../functions/stakeFunctions.mjs";
 import {percent} from "../main.mjs";
-import {displayStakeSuggestionBtn} from "../uiFunctions.mjs";
+import {displayStakeSuggestionBtn} from "../functions/uiFunctions.mjs";
 
 /**
  * Handles the "Play" button click on the stake page, validating the stake input, updating the game state, and transitioning to the main game page.
@@ -70,12 +70,12 @@ export function playBtn() {
 
     });
 
-    function showPopup(message) {
-        popUpEl.classList.toggle("hidden");
-        popUpContentEl.textContent = message;
-    }
 
+}
 
+export function showPopup(message) {
+    popUpEl.classList.toggle("hidden");
+    popUpContentEl.textContent = message;
 }
 
 export function removePopup() {

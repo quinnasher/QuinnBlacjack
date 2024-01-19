@@ -1,5 +1,5 @@
-import * as mainGameEls from "../gamePage.mjs";
-import * as welcome from "../welcome.mjs";
+import * as mainGameEls from "../functions/gamePage.mjs";
+import * as welcome from "../functions/welcome.mjs";
 import {gameInit} from "../functions/gameInit.mjs";
 import {stakeInit} from "../functions/stakeInit.mjs";
 import {mainGameInit} from "../functions/mainGameInit.mjs";

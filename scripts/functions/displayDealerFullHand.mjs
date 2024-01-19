@@ -1,6 +1,6 @@
 "use strict";
 
-import {dealerCardCtnEl} from "../gamePage.mjs";
+import {dealerCardCtnEl} from "./gamePage.mjs";
 import {isEnded} from "./gameBooleans.mjs";
 import {dealerHand} from "./hand.mjs";
 

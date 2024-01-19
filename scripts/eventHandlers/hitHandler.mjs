@@ -1,13 +1,13 @@
 "use strict";
 
-import * as mainGameEls from "../gamePage.mjs";
-import * as allFunctions from "../gameFunctions.mjs";
-import {calculateScore} from "../gameFunctions.mjs";
+import * as mainGameEls from "../functions/gamePage.mjs";
+import * as allFunctions from "../functions/gameFunctions.mjs";
+import {calculateScore} from "../functions/gameFunctions.mjs";
 import {playerHand} from "../functions/hand.mjs";
 import {displayDealerFullHand} from "../functions/displayDealerFullHand.mjs";
 import {playerScore, setPlayerScore} from "../functions/score.mjs";
 import {gameOutcome} from "../functions/gameOutcome.mjs";
-import {displayStakeSuggestionBtn} from "../uiFunctions.mjs";
+import {displayStakeSuggestionBtn} from "../functions/uiFunctions.mjs";
 import {balance} from "../functions/balance.mjs";
 import {updateStakeSuggestionButtonTexts} from "../functions/stakeFunctions.mjs";
 import {deck, setShuffledDeck, shuffledDeck} from "../functions/deck.mjs";

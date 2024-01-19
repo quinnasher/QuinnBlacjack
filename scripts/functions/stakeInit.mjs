@@ -1,7 +1,7 @@
-import * as stakePage from "../stake.mjs";
+import * as stakePage from "./stake.mjs";
 import {balance, setBalance} from "./balance.mjs";
-import {betMinMax, nFormatter} from "../gameFunctions.mjs";
-import {displayStakeSuggestionBtn} from "../uiFunctions.mjs";
+import {betMinMax, nFormatter} from "./gameFunctions.mjs";
+import {displayStakeSuggestionBtn} from "./uiFunctions.mjs";
 import {
     stakeBtnEventLister,
     updateStakeSuggestionButtonTexts,

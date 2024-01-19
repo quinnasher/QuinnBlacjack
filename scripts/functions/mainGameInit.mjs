@@ -1,10 +1,10 @@
 "use strict"
 
-import * as allFunctions from "../gameFunctions.mjs";
-import * as mainGameEls from "../gamePage.mjs";
-import {populateDeckWithImages} from "../uiFunctions.mjs";
+import * as allFunctions from "./gameFunctions.mjs";
+import * as mainGameEls from "./gamePage.mjs";
+import {populateDeckWithImages} from "./uiFunctions.mjs";
 import {deck, setShuffledDeck, shuffledDeck} from "./deck.mjs";
-import {clearHand, shuffle} from "../gameFunctions.mjs";
+import {clearHand, shuffle} from "./gameFunctions.mjs";
 import {dealerHand, playerHand} from "./hand.mjs";
 import {dealerScore, playerScore, setDealerScore, setPlayerScore} from "./score.mjs";
 import {gameOutcome} from "./gameOutcome.mjs";

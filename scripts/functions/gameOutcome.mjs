@@ -1,12 +1,12 @@
 "use strict"
 
 
-import {isEnded, setIsEnded} from "./gameBooleans.mjs";
+import {setIsEnded} from "./gameBooleans.mjs";
 import {handleGameMessage} from "./message.mjs";
-import * as stakePage from "../stake.mjs";
+import * as stakePage from "./stake.mjs";
 import {dealerScore, playerScore} from "./score.mjs";
 import {balance, setBalance} from "./balance.mjs";
-import {nFormatter} from "../gameFunctions.mjs";
+import {nFormatter} from "./gameFunctions.mjs";
 
 /**
  * Determines the outcome of a blackjack game based on player and dealer scores, handling win/loss/push scenarios and updating game state accordingly.
@@ -79,5 +79,4 @@ export function gameOutcome(stand = false) {
 
     })
 
-    // console.log(playerScore)
 }
