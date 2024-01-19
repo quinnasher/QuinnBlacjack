@@ -30,7 +30,7 @@ export function standBtn() {
 
 
             }
-            setIsEnded(true)
+            // setIsEnded(true)
             gameOutcome(true)
             displayDealerFullHand()
 

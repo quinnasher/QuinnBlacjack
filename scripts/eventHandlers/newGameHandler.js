@@ -2,7 +2,6 @@
 
 import { gameBodyEl, newGameEl } from "../functions/gamePage.mjs";
 import { stakeCtnEl } from "../functions/stake.mjs";
-import { gameInit } from "../functions/gameInit.mjs";
 import { balance, setBalance } from "../functions/balance.mjs";
 import { mainGameInit } from "../functions/mainGameInit.mjs";
 import {
@@ -12,9 +11,9 @@ import {
 
 export function newGame() {
   newGameEl.addEventListener("click", function () {
+    mainGameInit();
     updateStakeSuggestionButtonTexts(balance);
     stakeBtnEventLister();
-    mainGameInit();
 
     gameBodyEl.classList.toggle("hidden");
     stakeCtnEl.classList.remove("hidden");

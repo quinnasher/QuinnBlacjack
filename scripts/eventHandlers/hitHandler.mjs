@@ -43,8 +43,8 @@ export function hitBtn() {
 
                 // console.log(playerHand)
                 // console.log(playerScore)
-                displayDealerFullHand();
                 gameOutcome();
+                displayDealerFullHand();
                 updateStakeSuggestionButtonTexts(balance);
                 displayStakeSuggestionBtn(balance);
             }, 1000);
