@@ -286,12 +286,6 @@
   animation-timing-function: ease-out; /* Smoother acceleration */
 }
 
-/*.deal-card-animation {*/
-/*  animation-name: dealCard;*/
-/*  animation-duration: 10s; !* Adjust speed as desired *!*/
-/*  animation-timing-function: ease-out; !* Smoother deceleration *!*/
-/*}*/
-
 .remove-shadow {
   box-shadow: none;
 }
@@ -410,7 +404,7 @@
 
 #message {
   color: #f3e615;
-  font-size: 4rem;
+  font-size: 2rem;
   margin-bottom: 8rem;
   text-transform: uppercase;
   min-width: 20rem;

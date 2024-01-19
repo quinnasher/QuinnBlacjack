@@ -17,7 +17,7 @@ import { deckCardsEl } from "./gamePage.mjs";
  *
  * @returns {Object} An object containing key-value pairs of stake percentages (as keys) and their corresponding calculated amounts.
  */
-export function displayStakeSuggestionBtns(balance) {
+export function displayStakeSuggestionBtn(balance) {
   function betSuggestion(percent) {
     return (percent * balance).toFixed(0);
   }
@@ -40,16 +40,6 @@ export function displayStakeSuggestionBtns(balance) {
 
 // populate deck visually
 export function populateDeckWithImages() {
-  // for (let i = 0; i < shuffledDeck.length; i++) { // Iterate up to length - 1
-  //     const card = shuffledDeck[i];
-  //
-  //     const cardImage = document.createElement("img");
-  //     cardImage.src = `../assets/cards/${card.value}_of_${card.suit}.png`;
-  //     cardImage.classList.add("deck-img");
-  //
-  //     mainGameEls.deckCardsEl.appendChild(cardImage);
-  // }
-
   for (let i = 0; i < 10; i++) {
     // Create and append the cover image after all deck cards
     const cover = document.createElement("img");

@@ -2,74 +2,170 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-      /* Your existing styles here */
-
-      /* Style for the pop-up container */
-      .popup-container {
-        display: block;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #fff;
-        padding: 20px;
-        border: 1px solid #ccc;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        z-index: 1000;
-      }
-
-      /* Style for the close button in the pop-up */
-      .popup-close-btn {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        cursor: pointer;
-        width: 40px;
-        background: #000;
-      }
-    </style>
-    <title>Your Title</title>
+    <title>Black Jack</title>
+    <link rel="stylesheet" href="styles/style.css" />
   </head>
   <body>
-    <!-- Your existing HTML code -->
+    <main>
+      <!--   Game Landing Page-->
+      <div class="welcome-page">
+        <section class="center-page">
+          <div class="welcome-page-bg">
+            <button id="playNowBtn" class="btn">
+              <img src="assets/icons/play_now.svg" alt="" />
+              <span>Play Now</span>
+            </button>
+          </div>
+        </section>
+      </div>
 
-    <!-- Pop-up container -->
-    <div class="popup-container" id="insufficientBalancePopup">
-      <span id="popupContent"></span>
-      <button class="popup-close-btn" onclick="closePopup()">Close</button>
-    </div>
+      <!--    Stake page section-->
 
-    <script>
-      // Your existing JavaScript code
+      <div class="stake-page-ctn hidden">
+        <section class="center">
+          <h1 class="place-h1 mb-5rem">Place Bets</h1>
+          <div>
+            <input
+              id="stakeInput"
+              class="bottom"
+              type="number"
+              min="10000"
+              max="50000"
+              step="1000"
+              placeholder="₦10k - ₦50k"
+            />
 
-      function showInsufficientBalancePopup() {
-        const popup = document.getElementById("insufficientBalancePopup");
-        const popupContent = document.getElementById("popupContent");
+            <button id="clearStakeBtn">
+              <img src="assets/icons/close-circle.svg" alt="" />
+            </button>
+          </div>
 
-        popupContent.textContent = "Insufficient balance! Please add funds.";
-        popup.style.display = "block";
-      }
+          <!-- Pop-up container -->
+          <div class="popup-container hidden" id="popUP">
+            <span id="popUpContent"></span>
+            <button id="clearPopUp">
+              <img src="assets/icons/close-circle.svg" alt="" />
+            </button>
+          </div>
 
-      function closePopup() {
-        const popup = document.getElementById("insufficientBalancePopup");
-        popup.style.display = "none";
-      }
+          <div class="bottom">
+            <button class="stake-btn-0 stake-btn">100</button>
+            <button class="stake-btn-1 stake-btn">500</button>
+            <button class="stake-btn-2 stake-btn">10k</button>
+            <button class="stake-btn-3 stake-btn">100k</button>
+            <button class="stake-btn-4 stake-btn">200k</button>
+          </div>
 
-      document.getElementById("playBtn").addEventListener("click", function () {
-        // Check if balance is sufficient before proceeding
-        const currentBalance = 100000; // Replace with your actual balance logic
-        const stakeAmount =
-          parseInt(document.getElementById("stakeInput").value, 10) || 0;
+          <button id="playBtn" class="btn top-4rem">
+            <img src="assets/icons/play_now.svg" alt="" />
+            <span>Play</span>
+          </button>
+        </section>
+        <div class="btn balance">
+          <!--          <img src="assets/icons/money.svg" alt="" />-->
+          <span>Bal : ₦100k</span>
+        </div>
+      </div>
 
-        if (stakeAmount > currentBalance) {
-          showInsufficientBalancePopup();
-        } else {
-          // Proceed with the play logic
-          // ...
-        }
-      });
-    </script>
+      <!--   Main Game Section-->
+      <div class="game-body hidden">
+        <div class="game-menu">
+          <ul>
+            <li>
+              <button id="restart" class="btn">
+                <img src="assets/icons/refresh.svg" alt="" />
+                <span>Restart</span>
+              </button>
+            </li>
+            <li>
+              <button id="newGame" class="btn">
+                <img src="assets/icons/add.svg" alt="" />
+                <span>New game</span>
+              </button>
+            </li>
+
+            <li>
+              <button class="btn cursor-default">
+                <img src="assets/icons/money.svg" alt="" />
+                <span class="balance">₦100k</span>
+              </button>
+            </li>
+
+            <li>
+              <button id="stakeDisplay" class="btn cursor-default">
+                <span>Stake</span>
+                <span>₦10K</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div class="game">
+          <section class="deck">
+            <div id="deckCards" class="deck-cards">
+              <img
+                id="dealCard"
+                class="deck-img"
+                src="assets/cards/card-back.png"
+                alt=""
+              />
+            </div>
+          </section>
+          <div class="play-ctn fixed-width">
+            <section class="player-0 player active-player">
+              <h1 class="name mb-1rem">Dealer</h1>
+              <div class="card-ctn fixed-width">
+                <div class="relative">
+                  <div id="dealerCardCtn" class="card">
+                    <img
+                      class="mr-2rem"
+                      src="assets/cards/9_of_clubs.png"
+                      alt=""
+                    />
+                    <img
+                      class="mr-2rem"
+                      src="assets/cards/card-back.png"
+                      alt=""
+                    />
+                  </div>
+                  <span id="dealerScore" class="score">9</span>
+                </div>
+              </div>
+            </section>
+            <section class="player-1 player active-player">
+              <h1 class="name mb-1rem">Player</h1>
+              <div class="card-ctn fixed-width">
+                <div class="relative">
+                  <div id="playerCardCtn" class="card">
+                    <img
+                      class="mr-2rem"
+                      src="assets/cards/ace_of_hearts.png"
+                      alt=""
+                    />
+                    <img
+                      class="mr-2rem"
+                      src="assets/cards/9_of_clubs.png"
+                      alt=""
+                    />
+                  </div>
+                  <span id="playerScore" class="score">9/3</span>
+                </div>
+              </div>
+            </section>
+          </div>
+          <section class="sub-menu">
+            <div>
+              <h2 id="message">Blackjack</h2>
+            </div>
+            <div class="player-action">
+              <button id="hitBtn" class="btn">Hit</button>
+              <button id="standBtn" class="btn">Stand</button>
+              <button id="doubleBtn" class="btn">Double</button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="scripts/main.mjs"></script>
   </body>
 </html>

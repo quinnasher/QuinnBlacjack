@@ -91,7 +91,7 @@ export function dealCard(shuffledDeck) {
  * Calculates the total value of a hand of cards in a card game, considering the flexible value of Aces.
  *
  * @param {Array<Object>} hand - An array of card objects, each with a `value` property representing its numerical value.
- * @returns {hasAce: boolean, scoreWithAceFlexibility: number, initialScore: number, dealerFirstCardValue: number}} The total value of the hand, taking into account the optimal value of Aces to avoid busting.
+ * @returns {{score: number, dealerFirstCardValue}}} The total value of the hand, taking into account the optimal value of Aces to avoid busting.
  *
  * @example
  * const hand = [{ rank: "Ace", value: 11 }, { rank: "2", value: 2 }, { rank: "10", value: 10 }];
@@ -104,17 +104,24 @@ export function calculateScore(hand) {
         sum += card.value;
     }
 
-    let temp = sum
-    let aceScore = temp -= hand.filter((card) => card.rank === "ace").length * 10;
+    if (sum > 21) {
+        for (const card of hand) {
+            if (card.rank === "ace") {
+                sum -= 10
+            }
 
-    console.log(sum)
-    // // Return scores based on player or dealer
+        }
+    }
+
+    // let temp = sum
+    // let aceScore = temp -= hand.filter((card) => card.rank === "ace").length * 10;
+
     return {
-        initialScore: sum, // Initial score without considering ace adjustments
-        scoreWithAceFlexibility: sum > 21 ? aceScore : sum, // Initial score without considering ace adjustments
-        hasAce: hand.filter(card => card.rank === "ace").length > 0,
+        score: sum, // Initial score without considering ace adjustments
         dealerFirstCardValue: hand[0].value, // Dealer's initial visible card
+        hasAce: hand.filter(card => card.rank === "ace").length > 0
     };
+
 }
 
 
@@ -156,30 +163,56 @@ export function revealHand(hand, isDealer = false, isEnded = false) {
     return cardList;
 }
 
-// export const allFunctions = {
-//     createDeck: createDeck,
-//     shuffle: shuffle,
-//     dealCard: dealCard,
-//     calculateScore: calculateScore,
-//     checkHand: checkHand,
-//     clearHand: clearHand,
-//     revealHand: revealHand,
-// };
+// export function nFormatter(num, digits) {
+//     const lookup = [
+//         {value: 1, symbol: ""},
+//         {value: 1e3, symbol: "K"},
+//         {value: 1e6, symbol: "M"},
+//         {value: 1e9, symbol: "B"},
+//         {value: 1e12, symbol: "T"},
+//         {value: 1e15, symbol: "P"},
+//         {value: 1e18, symbol: "E"}
+//     ];
+//
+//     const item = lookup.findLast(item => num >= item.value);
+//
+//     if (item) {
+//         const formattedNum = (num / item.value).toFixed(digits);
+//         const parts = formattedNum.split('.');
+//         const integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+//         const decimalPart = parts[1] ? `.${parts[1]}` : "";
+//
+//         return integerPart.concat(decimalPart, item.symbol);
+//     } else {
+//         return "0";
+//     }
+// }
 
-export function nFormatter(num, digits) {
-    const lookup = [
-        {value: 1, symbol: ""},
-        {value: 1e3, symbol: "K"},
-        {value: 1e6, symbol: "M"},
-        {value: 1e9, symbol: "B"},
-        {value: 1e12, symbol: "T"},
-        {value: 1e15, symbol: "P"},
-        {value: 1e18, symbol: "E"}
-    ];
-    const regexp = /\.0+$|(?<=\.[0-9]*[1-9])0+$/;
-    const item = lookup.findLast(item => num >= item.value);
-    return item ? (num / item.value).toFixed(digits).replace(regexp, "").concat(item.symbol) : "0";
+
+export function nFormatter(number) {
+    // Formats a number by adding commas after every 3 digits.
+
+    // Split the number into integer and decimal parts
+    const parts = String(Math.abs(number)).split(".");
+    const integerPart = parts[0];
+    const decimalPart = parts[1] || ""; // Use decimal part if it exists
+
+    // Add commas to the integer part
+    let formattedInteger = "";
+    for (let i = integerPart.length - 1; i >= 0; i--) {
+        formattedInteger = integerPart[i] + formattedInteger; // Reverse the integer
+        if ((integerPart.length - i) % 3 === 0 && i > 0) {
+            formattedInteger = "," + formattedInteger; // Add comma every 3 digits except for the first set
+        }
+    }
+
+    // Combine the formatted parts and add sign if negative
+    const formattedNumber = formattedInteger + (decimalPart ? "." + decimalPart : "");
+    return number < 0 ? "-" + formattedNumber : formattedNumber;
 }
+
+// Test the function
+console.log(nFormatter(10000000)); // Output: "10,000,000"
 
 
 /**

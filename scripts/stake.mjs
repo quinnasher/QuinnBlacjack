@@ -23,3 +23,4 @@ export function stakeInputMinMaxValue(minMax) {
     stakeInputEl.max = minMax.maxBet;
     stakeInputEl.min = minMax.minBet;
 }
+
