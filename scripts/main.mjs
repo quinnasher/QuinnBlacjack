@@ -10,6 +10,7 @@ import {newGame} from "./eventHandlers/newGameHandler.js";
 import {standBtn} from "./eventHandlers/standHanler.mjs";
 import {balance} from "./functions/balance.mjs";
 import {betMinMax} from "./functions/gameFunctions.mjs";
+import {doubleBtn} from "./eventHandlers/doubleHandler.mjs";
 
 // Constants for stake percentages
 export const percent = [0.05, 0.1, 0.3, 0.4, 0.5];

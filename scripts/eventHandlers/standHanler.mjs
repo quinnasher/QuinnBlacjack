@@ -30,8 +30,9 @@ export function standBtn() {
 
 
             }
-            // setIsEnded(true)
+            setIsEnded(true)
             gameOutcome(true)
+            console.log(isEnded)
             displayDealerFullHand()
 
         }
